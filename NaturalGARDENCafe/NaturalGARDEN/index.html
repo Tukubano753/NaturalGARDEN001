@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natural GARDEN Cafe</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #fff;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: #f8f8f8;
+            padding: 20px 0;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        .nav-links {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #f8f8f8;
+            padding: 20px;
+            transition: right 0.3s ease-in-out;
+            z-index: 1000;
+        }
+        .nav-links.active {
+            right: 0;
+        }
+        .nav-links a {
+            display: block;
+            margin: 10px 0;
+            color: #333;
+            text-decoration: none;
+        }
+        .close-btn {
+            font-size: 24px;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .hamburger {
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .hero {
+            background-image: url('ヒーロー画像001.png');
+            background-size: cover;
+            background-position: center;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 76px;
+            color: #2ecc71;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .hero p {
+            font-size: 30px;
+            color: #ffffff;
+            text-shadow: 10px 10px 20px rgba(0,0,0,0.5);
+        }
+        .cta-button {
+            background-color: #ff6b6b;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .section {
+            padding: 40px 0;
+        }
+        .section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .menu-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .menu-item {
+            background-color: #f8f8f8;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: left;
+        }
+        .menu-item h3 {
+            margin-top: 0;
+        }
+        .menu-item p {
+            font-size: 14px;
+            color: #666;
+        }
+        .menu-images {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .menu-images img {
+            width: 32%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .map-container {
+            height: 300px;
+            margin-bottom: 20px;
+        }
+        .map-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .info {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .info-item {
+            flex-basis: calc(50% - 10px);
+            margin-bottom: 20px;
+        }
+        .map-container {
+    margin-bottom: 180px; /* 地図の下に余白を追加 */
+}
+
+.info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.info-item {
+    background-color: #f8f8f8;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.info-item h3 {
+    margin-top: 0;
+    color: #2ecc71;
+}
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .social-links {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .social-links a {
+            color: #fff;
+            margin: 0 15px;
+            font-size: 36px;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: #2ecc71;
+        }
+        .social-links-text {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #fff;
+        }
+        @media (min-width: 768px) {
+            .hamburger {
+                display: none;
+            }
+            .nav-links {
+                display: flex;
+                position: static;
+                width: auto;
+                height: auto;
+                background-color: transparent;
+                padding: 0;
+            }
+            .nav-links a {
+                display: inline;
+                margin-left: 20px;
+            }
+            .close-btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Natural GARDEN Cafe</div>
+            <div class="nav-links">
+                <span class="close-btn">&times;</span>
+                <a href="#lunch-menu">ランチメニュー</a>
+                <a href="#sweets-menu">スイーツメニュー</a>
+                <a href="#location">アクセス</a>
+                <a href="#reservation">予約</a>
+            </div>
+            <div class="hamburger">☰</div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Natural GARDEN Cafe</h1>
+                <p>心地よい空間で、自然の恵みを味わう</p>
+                <a href="#reservation" class="cta-button">予約する</a>
+            </div>
+        </section>
+
+        <section id="lunch-menu" class="section">
+            <div class="container">
+                <h2>ランチメニュー</h2>
+                <div class="menu-gallery">
+                    <div class="menu-item">
+                        <h3>パニーニ＆サンドイッチ</h3>
+                        <div class="menu-images">
+                            <img src="パニーニ001.png" alt="ベジタブルサンドイッチ">
+                            <img src="パニーニ002.png" alt="イチジクとプロシュートのパニーニ">
+                            <img src="パニーニ003.png" alt="クロワッサンサンドイッチ">
+                        </div>
+                        <h4>ベジタブルサンドイッチ</h4>
+                        <p>新鮮な野菜をたっぷり挟んだヘルシーなサンドイッチ。アボカド、トマト、キュウリ、レタスなどを全粒粉パンで挟みました。</p>
+                        <h4>イチジクとプロシュートのパニーニ</h4>
+                        <p>甘みのあるイチジクと塩味のきいたプロシュートの絶妙な組み合わせ。クリームチーズを添えたフランスパンのパニーニです。</p>
+                        <h4>クロワッサンサンドイッチ</h4>
+                        <p>サクサクのクロワッサンに、ハムやチーズ、新鮮な野菜を挟んだ贅沢なサンドイッチ。朝食にもぴったりです。</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>プレート＆ボウル</h3>
+                        <div class="menu-images">
+                            <img src="プレート001.png" alt="ハーブローストチキンプレート">
+                            <img src="プレート002.png" alt="シーフードリゾット">
+                            <img src="プレート003.png" alt="チーズたっぷりカレードリア">
+                        </div>
+                        <h4>ハーブローストチキンプレート</h4>
+                        <p>香り豊かなハーブでローストしたジューシーなチキン胸肉がメインの贅沢プレート。ソテーした旬の野菜と新鮮なフルーツトマトを添えました。</p>
+                        <h4>シーフードリゾット</h4>
+                        <p>濃厚でクリーミーなリゾットに、新鮮な海の幸をたっぷりと。プリプリのエビ、やわらかなイカを贅沢に使用しています。</p>
+                        <h4>チーズたっぷりカレードリア</h4>
+                        <p>スパイシーなカレーとまろやかなホワイトソースが絶妙にマッチした、心温まるドリア。トロッとしたチーズと香ばしい焼き目が食欲をそそります。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sweets-menu" class="section">
+            <div class="container">
+                <h2>スイーツメニュー</h2>
+                <div class="menu-gallery">
+                    <div class="menu-item">
+                        <h3>ケーキ</h3>
+                        <div class="menu-images">
+                            <img src="ケーキ001.png" alt="クラシックニューヨークチーズケーキ">
+                            <img src="ケーキ002.png" alt="ダークチョコレートガナッシュケーキ">
+                            <img src="ケーキ003.png" alt="抹茶ティラミス">
+                        </div>
+                        <h4>クラシックニューヨークチーズケーキ</h4>
+                        <p>なめらかな口どけの本場NYスタイルチーズケーキ。厳選したクリームチーズを贅沢に使用し、自家製ベリーソースを添えました。</p>
+                        <h4>ダークチョコレートガナッシュケーキ</h4>
+                        <p>厳選したダークチョコレートのガナッシュとふわふわスポンジが織りなすハーモニー。金箔を添えた特別な一品です。</p>
+                        <h4>抹茶ティラミス</h4>
+                        <p>上質な抹茶クリームとしっとりスポンジを幾層にも重ねた和風ティラミス。和と洋の絶妙な融合をどうぞ。</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>タルト＆パイ</h3>
+                        <div class="menu-images">
+                            <img src="タルト001.png" alt="レモンメレンゲタルト">
+                            <img src="タルト002.png" alt="キャラメルナッツタルト">
+                            <img src="タルト003.png" alt="ブルーベリーチーズタルト">
+                        </div>
+                        <h4>レモンメレンゲタルト</h4>
+                        <p>爽やかなレモンカスタードとふんわりメレンゲの甘みが織りなすハーモニー。サクサクタルト生地と共に。</p>
+                        <h4>キャラメルナッツタルト</h4>
+                        <p>香ばしいキャラメルと厳選ナッツの風味広がる贅沢タルト。サクサク生地との相性も抜群です。</p>
+                        <h4>ブルーベリーチーズタルト</h4>
+                        <p>なめらかなチーズフィリングに完熟ブルーベリーをたっぷりと。サクサクタルト生地と共にどう。</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>プリン＆パフェ</h3>
+                        <div class="menu-images">
+                            <img src="プリン001.png" alt="クラシッククレームブリュレ">
+                            <img src="プリン002.png" alt="抹茶パフェ">
+                            <img src="プリン003.png" alt="ストロベリーパフェ">
+                        </div>
+                        <h4>クラシッククレームブリュレ</h4>
+                        <p>カリカリキャラメル層の下に、なめらかなバニラビーンズ香るカスタード。割る瞬間も楽しい一品。</p>
+                        <h4>抹茶パフェ</h4>
+                        <p>上質な抹茶アイスを中心に、寒天、黒蜜、粒あんを重ね、ホイップクリームで仕上げた和風パフェ。</p>
+                        <h4>ストロベリーパフェ</h4>
+                        <p>瑞々しい苺と濃厚バニラアイス、サクサクグラノーラを重ねた華やかなパフェ。季節限定です。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="location" class="section">
+            <div class="container">
+                <h2>アクセス</h2>
+                <div class="gallery">
+                    <img src="アクセス001.png" alt="店舗外観">
+                    <img src="アクセス002.png" alt="店内1">
+                    <img src="アクセス003.png" alt="店内2">
+                    <img src="アクセス004.png" alt="テラス席">
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.7477985978897!2d139.74692687677415!3d35.65844413019966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bc0e7235e6f%3A0x82ac6d6a9befb084!2z44CSMTAt0001IFRva3lvLCBNaW5hdG8gQ2l0eSwgU2hpYmFrb2VuLCAz4Khb-zM!5e0!3m2!1sen!2sjp!4v1650543200000!5m2!1sen!2sjp" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="info">
+                    <div class="info-item">
+                        <h3>住所</h3>
+                        <p>〒105-0011 東京都港区芝公園３丁目３</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>営業時間</h3>
+                        <p>11:00 - 22:00 (L.O. 21:30)</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>電話番号</h3>
+                        <p>03-1234-5678</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>定休日</h3>
+                        <p>毎週水曜日</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Natural GARDEN Cafe. All rights reserved.</p>
+            <div class="social-links">
+                <span class="social-links-text">SNSでもチェック！</span>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook" title="Facebook"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram" title="Instagram"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter" title="Twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const closeBtn = document.querySelector('.close-btn');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.add('active');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+        });
+
+        // メニューリンクをクリックしたらナビゲーションを閉じる
+        const menuLinks = document.querySelectorAll('.nav-links a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
